@@ -52,7 +52,6 @@ Map interactive des Points d'Apport Volontaire sur le territoire de la CCCE
         <script src="js/leaflet.markercluster.js"></script>
         <script>
 
-        // Création de la Carte
         var map = L.map("map").setView([49.460059, 6.217533], 12);
 		var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
@@ -100,7 +99,6 @@ Map interactive des Points d'Apport Volontaire sur le territoire de la CCCE
                 })
             );
 
-        // Création et personnalisation de la Popup
         function pop_PAV2023_5(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -127,7 +125,7 @@ Map interactive des Points d'Apport Volontaire sur le territoire de la CCCE
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
  
-        // Fonction identification et marqueurs différents suivant le type de PAV (ne fonctionne pas)
+     
         function style_PAV2023_5_0(feature) {
             switch(String(feature.properties['Container id'])) {
                 case '1':
@@ -219,7 +217,7 @@ Map interactive des Points d'Apport Volontaire sur le territoire de la CCCE
             spiderfyDistanceMultiplier: 2});
         cluster_PAV2023_5.addLayer(layer_PAV2023_5);
 
-        // Fonction de zoom sur une unité spatiale 
+        
         function zoomToFeature(e) {
             map.fitBounds(e.target.getBounds());
         }
@@ -251,7 +249,7 @@ Map interactive des Points d'Apport Volontaire sur le territoire de la CCCE
         document.getElementsByClassName('search-button')[0].className +=
          ' fa fa-binoculars';
 		 
-		 // Ajout des clusters
+		
 		 var cluster_PAV2023_5 = new L.MarkerClusterGroup({showCoverageOnHover: false,
             spiderfyDistanceMultiplier: 2});
         cluster_PAV2023_5.addLayer(layer_PAV2023_5);
@@ -260,7 +258,7 @@ Map interactive des Points d'Apport Volontaire sur le territoire de la CCCE
         cluster_PAV2023_5.addTo(map);
         setBounds();
 		
-		// Configuration de l'affichage des unités spatiales : gamme de couleur 
+		
          function getColor1(d) {
 			return 	d > 3 ? '#FF7F00' :
 					d > 2 ? '#1F78B4' :
@@ -269,10 +267,10 @@ Map interactive des Points d'Apport Volontaire sur le territoire de la CCCE
                                     '#000000';
             }
 		
-		 // Ajout de la légende 
+		
          var legend1 = L.control({position: 'bottomleft'});
 
-            // Configuration de la légende 
+         
             legend1.onAdd = function (map) {
 
                 var div = L.DomUtil.create('div', 'info legend'),
