@@ -124,7 +124,7 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
  
-        // Fonction identification et marqueurs différents suivant le type de PAV (ne fonctionne pas)
+        // Fonction identification et marqueurs différents suivant le type de PAV 
         function style_PAV2023_5_0(feature) {
             switch(String(feature.properties['Container id'])) {
                 case '1':
@@ -256,12 +256,12 @@
         bounds_group.addLayer(layer_PAV2023_5);
         cluster_PAV2023_5.addTo(map);
         setBounds();
-		
+
 		// Configuration de l'affichage des unités spatiales : gamme de couleur 
          function getColor1(d) {
-			return 	d == 'Verre' ? '#FF7F00' :
-					d == 'Papier' ? '#1F78B4' :
-                    d == 'Verre & Papier' ? '#000000' :
+			return 	d == 1 ? '#FF7F00' :
+					d == 2 ? '#1F78B4' :
+                    d == 3 ? '#000000' :
                       
                                     '#000000';
             }
@@ -272,23 +272,27 @@
             // Configuration de la légende 
             legend1.onAdd = function (map) {
 
-                var div = L.DomUtil.create('div', 'info legend'),					
+                var div = L.DomUtil.create('div', 'info legend'),
+                    grades = ['Verre', 'Piapier', 'Verre & Papier'],
+					
                     labels = ["<strong> Conteneurs: <br></strong>"],	
-                    categories = ['Verre', 'Papier', 'Verre & Papier']
+                    from, to;
 
-                    for (var i = 0; i < categories.length; i++) {
-            div.innerHTML += 
-            labels.push(
-                '<i style="background:' + getColor(categories[i] + 1) + '"></i> ' +
-                (categories[i] ? categories[i] : '+'));
-        }
+                for (var i = 0; i < grades.length; i++) {
+                    from = grades[i];
+                    to = grades[i+1]; 
+					
 
-        div.innerHTML = labels.join('<br>');
-    return div;
+                    labels.push(
+                        '<i class="circle" style="background":' + getColor1(from) +'"></i> ' + (grades[i] ? grades[i] : '+'));
+                }
+
+                div.innerHTML = labels.join('<br/><br/>');
+                return div;
             };
 				
 		 // Ajout de la légende à la carte 
-         legend1.addTo(map);
+            legend1.addTo(map);
         </script>
     </body>
 </html>
