@@ -132,7 +132,7 @@
                 pane: 'pane_PAV2023_5',
                 radius: 4.0,
                 opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
+                color: 'rgba(51,160,44,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
@@ -148,7 +148,7 @@
                 pane: 'pane_PAV2023_5',
                 radius: 4.0,
                 opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
+                color: 'rgba(31,120,180,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
@@ -164,7 +164,7 @@
                 pane: 'pane_PAV2023_5',
                 radius: 4.0,
                 opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
+                color: 'rgba(255,127,0,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
@@ -180,7 +180,7 @@
                 pane: 'pane_PAV2023_5',
                 radius: 4.0,
                 opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
+                color: 'rgba(209,187,43,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
@@ -259,9 +259,9 @@
 		
 		// Configuration de l'affichage des unités spatiales : gamme de couleur 
          function getColor1(d) {
-			return 	d > 3 ? '#FF7F00' :
-					d > 2 ? '#1F78B4' :
-                    d > 1 ? '#000000' :
+			return 	d == 'Verre' ? '#FF7F00' :
+					d == 'Papier' ? '#1F78B4' :
+                    d == 'Verre & Papier' ? '#000000' :
                       
                                     '#000000';
             }
@@ -272,24 +272,19 @@
             // Configuration de la légende 
             legend1.onAdd = function (map) {
 
-                var div = L.DomUtil.create('div', 'info legend'),
-                    grades = [1, 2, 3],
-					
+                var div = L.DomUtil.create('div', 'info legend'),					
                     labels = ["<strong> Conteneurs: <br></strong>"],	
-                    from, to;
+                    categories = ['Verre', 'Papier', 'Verre & Papier']
 
-                for (var i = 0; i < grades.length; i++) {
-                    from = grades[i];
-                    to = grades[i+1]; 
-					
+                    for (var i = 0; i < categories.length; i++) {
+            div.innerHTML += 
+            labels.push(
+                '<i style="background:' + getColor(categories[i] + 1) + '"></i> ' +
+                (categories[i] ? categories[i] : '+'));
+        }
 
-                    labels.push(
-                        '<i style="background:' + getColor1(from) +'"></i> ' +
-						from );
-                }
-
-                div.innerHTML = labels.join('<br/><br/>');
-                return div;
+        div.innerHTML = labels.join('<br>');
+    return div;
             };
 				
 		 // Ajout de la légende à la carte 
