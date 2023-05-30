@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="css/leaflet.awesome-markers.css">
         <link rel="stylesheet" href="css/MarkerCluster.css">
         <link rel="stylesheet" href="css/MarkerCluster.Default.css">
+        <link rel="stylesheet" href="css/LegendCircle.css">
         <style>
         html, body, #map {
             width: 100%;
@@ -259,10 +260,9 @@
 
 		// Configuration de l'affichage des unités spatiales : gamme de couleur 
          function getColor1(d) {
-			return 	d == 'Verre' ? "#FF7F00" :
-					d == 'Papier' ? "#1F78B4" :
-                    d == 'Verre & Papier' ? "#000000" :
-                      
+			return 	d === 'Verre' ? "#FF7F00" :
+					d === 'Papier' ? "#1F78B4" :
+                    d === 'Verre & Papier' ? "#000000" :                      
                                     "#000000";
             }
 		
@@ -272,19 +272,16 @@
             // Configuration de la légende 
             legend1.onAdd = function (map) {
 
-                var div = L.DomUtil.create('div', 'info legend'),
-                    grades = ['Verre', 'Papier', 'Verre & Papier'],
-					
-                    labels = ["<strong> Conteneurs: <br></strong>"],	
-                    from, to;
+                var div = L.DomUtil.create('div', 'info legend');
+                labels = ["<strong> Conteneurs: <br></strong>"];	
+                categories = ['Verre', 'Papier', 'Verre & Papier'];
 
-                for (var i = 0; i < grades.length; i++) {
-                    from = grades[i];
-                    to = grades[i+1]; 
+                div.innerHTML ='';
+                for (var i = 0; i < categories.length; i++) {
 					
-
+                    
                     labels.push(
-                        '<i class="circle" style="background":' + getColor1(from) +'"></i> ' + (grades[i] ? grades[i] : '+'));
+                        '<i class="circle" style="background":' + getColor1(categories[i]) +'"></i> ' + (categories[i] ? categories[i] : '+'));
                 }
 
                 div.innerHTML = labels.join('<br/><br/>');
@@ -293,6 +290,7 @@
 				
 		 // Ajout de la légende à la carte 
             legend1.addTo(map);
+
         </script>
     </body>
 </html>
