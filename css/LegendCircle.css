@@ -23,6 +23,6 @@
 
 .circle {
     float: left;
-    border: 5px solid #222;
-    border-radius: 50%;
+    border: 1px solid #222;
+    border-radius: 90%;
     }
