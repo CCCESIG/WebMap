@@ -267,11 +267,11 @@
         cluster_PAV2023_5.addTo(map);
         setBounds();
 
-		// Configuration de l'affichage des unités spatiales : gamme de couleur 
+		// Configuration de la gamme de couleur 
          function getColor1(d) {
 			return 	d === 'Verre' ? "#FF7F00" :
 					d === 'Papier' ? "#1F78B4" :
-                    d === 'Verre & Papier' ? "#000000" :                      
+                    d === 'Verres et Papiers' ? "#000000" :                      
                                     "#000000";
             }
 		
@@ -283,7 +283,7 @@
 
                 var div = L.DomUtil.create('div', 'info legend');
                 labels = ["<strong> Conteneurs: <br></strong>"];	
-                categories = ['Verre', 'Papier', 'Verre & Papier'];
+                categories = ['Verre', 'Papier', 'Verre et Papier'];
 
                 div.innerHTML ='';
                 for (var i = 0; i < categories.length; i++) {
