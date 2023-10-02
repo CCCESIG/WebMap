@@ -315,18 +315,19 @@
             legend1.onAdd = function (map) {
 
                 var div = L.DomUtil.create('div', 'info legend');
-                labels = ["<strong> Conteneurs: <br></strong>"];	
-                categories = ['Verre', 'Papier', 'Verre et Papier'];
+                //labels = ["<strong> Conteneurs: <br></strong>"];	
+                //categories = ['Verre', 'Papier', 'Verre et Papier'];
 
-                div.innerHTML ='';
-                for (var i = 0; i < categories.length; i++) {
+                div.innerHTML +=
+                //for (var i = 0; i < categories.length; i++) {
+                '<img src="legend.png" alt="legend" width="134" height="147">';
 					
                     
-                    labels.push(
-                        '<i class="circle" style="background":' + getColor1(categories[i]) +'"></i> ' + (categories[i] ? categories[i] : '+'));
-                }
+                    //labels.push(
+                      //  '<i class="circle" style="background":' + getColor1(categories[i]) +'"></i> ' + (categories[i] ? categories[i] : '+'));
+                //}
 
-                div.innerHTML = labels.join('<br/><br/>');
+                //div.innerHTML = labels.join('<br/><br/>');
                 return div;
             };
 				
